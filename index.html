@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Understanding JSON — A Practical Guide</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+  <div class="side-top">
+    <div class="logo">ANG</div>
+    <div class="side-name">Abdulrahman<br>Nader Gouda</div>
+  </div>
+  <nav>
+    <a href="#overview" class="active">Overview</a>
+    <a href="#anatomy">Anatomy</a>
+    <a href="#types">Data Types</a>
+    <a href="#workflow">Workflow</a>
+    <a href="#try-it">Try It Live</a>
+    <a href="#mistakes">Common Mistakes</a>
+    <a href="#parsing">Parsing in Code</a>
+  </nav>
+  <div class="side-foot">JSON Crash Course</div>
+</aside>
+
+<main>
+
+  <section id="overview" class="hero">
+    <span class="kicker">JSON GUIDE</span>
+    <h1>Understanding<br>JSON.</h1>
+    <p class="lead">A lightweight text format for storing and exchanging data — readable by humans, easy for machines to parse.</p>
+    <a href="#try-it" class="cta">Try the live validator ↓</a>
+  </section>
+
+  <section id="anatomy" class="sec">
+    <h2><span class="num">01</span> Anatomy of a JSON file</h2>
+    <p class="sec-desc">Every JSON document is built from the same few pieces.</p>
+    <div class="anatomy">
+      <pre class="code-block"><span class="tok-brace">{</span>
+  <span class="tok-key">"name"</span><span class="tok-colon">:</span> <span class="tok-str">"Abdulrahman"</span><span class="tok-comma">,</span>
+  <span class="tok-key">"age"</span><span class="tok-colon">:</span> <span class="tok-num">27</span><span class="tok-comma">,</span>
+  <span class="tok-key">"skills"</span><span class="tok-colon">:</span> <span class="tok-brace">[</span><span class="tok-str">"git"</span><span class="tok-comma">,</span> <span class="tok-str">"json"</span><span class="tok-brace">]</span>
+<span class="tok-brace">}</span></pre>
+      <ul class="callouts">
+        <li><span class="dot"></span><b>{ }</b> — an object: a set of key/value pairs</li>
+        <li><span class="dot"></span><b>"key"</b> — always text, always double-quoted</li>
+        <li><span class="dot"></span><b>:</b> — separates a key from its value</li>
+        <li><span class="dot"></span><b>,</b> — separates entries, never after the last one</li>
+        <li><span class="dot"></span><b>[ ]</b> — an array: an ordered list of values</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="types" class="sec">
+    <h2><span class="num">02</span> Data types</h2>
+    <p class="sec-desc">JSON supports exactly six value types — nothing else.</p>
+    <div class="type-row">
+      <div class="type-chip"><span class="t-ex mono">"hello"</span><span class="t-name">string</span></div>
+      <div class="type-chip"><span class="t-ex mono">42</span><span class="t-name">number</span></div>
+      <div class="type-chip"><span class="t-ex mono">true</span><span class="t-name">boolean</span></div>
+      <div class="type-chip"><span class="t-ex mono">null</span><span class="t-name">null</span></div>
+      <div class="type-chip"><span class="t-ex mono">[ ]</span><span class="t-name">array</span></div>
+      <div class="type-chip"><span class="t-ex mono">{ }</span><span class="t-name">object</span></div>
+    </div>
+  </section>
+
+  <section id="workflow" class="sec">
+    <h2><span class="num">03</span> The daily workflow</h2>
+    <p class="sec-desc">The loop you repeat every time the data changes.</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot">1</div>
+        <div class="tl-body"><b>Edit</b><span>Change values in the file</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">2</div>
+        <div class="tl-body"><b>Validate</b><span>Make sure the syntax is correct</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">3</div>
+        <div class="tl-body"><b>Format</b><span>Keep indentation consistent</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">4</div>
+        <div class="tl-body"><b>Save</b><span>Write it back to data.json</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">5</div>
+        <div class="tl-body"><b>Use</b><span>Parse it in your application</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="try-it" class="sec try-it">
+    <h2><span class="num">04</span> Try it live</h2>
+    <p class="sec-desc">Paste or edit JSON below — it's checked as you type.</p>
+    <div class="validator">
+      <textarea id="jsonInput" spellcheck="false">{
+  "name": "Abdulrahman",
+  "role": "developer",
+  "skills": ["git", "json", "html"]
+}</textarea>
+      <div class="validator-side">
+        <div class="status" id="jsonStatus">Valid JSON</div>
+        <button class="btn" id="prettyBtn">Format</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="mistakes" class="sec">
+    <h2><span class="num">05</span> Common mistakes</h2>
+    <ul class="mistake-list">
+      <li><span class="x">✕</span><span class="mono">{ "a": 1, }</span><span class="why">trailing comma before the closing brace</span></li>
+      <li><span class="x">✕</span><span class="mono">{ 'a': 1 }</span><span class="why">single quotes are not valid JSON</span></li>
+      <li><span class="x">✕</span><span class="mono">{ a: 1 }</span><span class="why">unquoted keys are not allowed</span></li>
+      <li><span class="x">✕</span><span class="mono">{ "a": 1 // note }</span><span class="why">comments are not supported in JSON</span></li>
+    </ul>
+  </section>
+
+  <section id="parsing" class="sec">
+    <h2><span class="num">06</span> Parsing in code</h2>
+    <p class="sec-desc">Turn the text on disk into a usable object, and back again.</p>
+    <div class="terminal">
+      <div class="term-bar"><span></span><span></span><span></span></div>
+      <pre class="term-body mono">const text = fs.readFileSync("data.json");
+const data = JSON.parse(text);       <span class="c">// text → object</span>
+JSON.stringify(data, null, 2);       <span class="c">// object → text</span></pre>
+    </div>
+  </section>
+
+  <section id="schema" class="sec last">
+    <h2><span class="num">07</span> Bonus: JSON Schema</h2>
+    <p class="sec-desc">Optional — describes the shape your JSON must follow, so it can be validated automatically.</p>
+    <pre class="code-block small"><span class="tok-brace">{</span>
+  <span class="tok-key">"type"</span><span class="tok-colon">:</span> <span class="tok-str">"object"</span><span class="tok-comma">,</span>
+  <span class="tok-key">"required"</span><span class="tok-colon">:</span> <span class="tok-brace">[</span><span class="tok-str">"name"</span><span class="tok-brace">]</span>
+<span class="tok-brace">}</span></pre>
+  </section>
+
+  <footer>
+    <div>wrap in <b>{}</b> → quote keys → correct types → validate → use</div>
+    <div class="credit">Abdulrahman Nader Gouda</div>
+  </footer>
+
+</main>
+
+<script src="main.js"></script>
+</body>
+</html>
